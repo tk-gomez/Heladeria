@@ -60,7 +60,7 @@ void listarCliente(Cliente NuevoCliente){
 
 
 /*
-void listarCliente(Cliente NuevoCliente){
+void listarHelado(Cliente NuevoCliente){
 	printf("\n%i\t%0.2f\t%s\t%s\n",NuevoCliente.helados->clave,
 		NuevoCliente.helados->costo,NuevoCliente.helados->ingPrincipal,
 		NuevoCliente.helados->sabor);
