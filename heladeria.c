@@ -1,28 +1,63 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define MAX 30
-#include"Heladeria.h"
+#include<string.h>
+#include "Heladeria.h"
 
-Cliente *crearCliente(){
-    Cliente NuevoCliente;
-    NuevoCliente=(Cliente *)calloc(1,sizeof(Cliente));
-    NuevoCliente->orden=(int *)calloc(MAX,sizeof(int));
-    NuevoCliente->nombre=(char *)calloc(MAX,sizeof(char));
-    NuevoCliente->helados.clave=(int *)calloc(MAX,sizeof(int));
-    NuevoCliente->helados.sabor=(char *)calloc(MAX,sizeof(char));
-return NuevoCliente;
-}
 
-void llenarEstructura(Cliente *NuevoCliente){
-    printf("\nNumero de Orden: ");
-    scanf("%i",&NuevoCliente->orden);
-    fgets(NuevoCliente->nombre);
-    printf("\nClave: ");
-    scanf("%i",&NuevoCliente->helados.clave);
-    fgets(NuevoCliente->helados.sabor);
+void crearInventario(struct Inventario *inventario){
+    inventario->clave=(char *)malloc(MAX*sizeof(char));
+    inventario->sabor=(char *)malloc(MAX*sizeof(char));
+    inventario->tipo=(char *)malloc(MAX*sizeof(char));
+    inventario->descripcion=(char *)malloc(MAX*sizeof(char));
+    inventario->cantidad=(char *)malloc(MAX*sizeof(char));
+    inventario->precio=(char *)malloc(MAX*sizeof(char));
 }
-void listarHelados(Cliente unCliente){
-    printf("%i\t%s\t%i\t%s\t\n",unCliente.orden,unCliente.nombre
-           unCliente.helados.clave,unCliente.helados.sabor);
+void listarinventario(struct Inventario inventario){
+    printf("%s\t%s\t%s\t%s \t\t\t\t%s   \t\t\t%s\n",inventario.clave,inventario.sabor,
+    inventario.tipo,inventario.descripcion,inventario.cantidad,inventario.precio);
 }
+void llenarInventario(struct Inventario *arrInv){
+    FILE *archivo;
+    char linea[1024], delimitador[] = ",\n";
+    char *token;
+    int indice;
 
+    archivo = fopen( ARCHIVO, "rt" );
+    if( archivo == NULL ){
+        printf( "Error (NO ABIERTO)\n" );
+        return ;
+    }
+
+    indice = -1; //INICIALIZA EL INDICE DEL ARREGLO
+    printf("\nLEYENDO DATOS DEL ARCHIVO:\n");
+    while(fgets(linea,1023, archivo) != NULL){
+        token = strtok(linea, delimitador);
+        indice++;
+        printf("\n----------------\n");
+        while (token != NULL){
+
+            crearInventario(&arrInv[indice]);
+
+            strcpy(arrInv[indice].clave,token);
+            printf("Clave: %s\n", token);
+            token = strtok(NULL, delimitador);
+            strcpy(arrInv[indice].sabor,token);
+            printf("Sabor: %s\n", token);
+            token = strtok(NULL, delimitador);
+            strcpy(arrInv[indice].tipo,token);
+            printf("Tipo: %s\n", token);
+            token = strtok(NULL, delimitador);
+            strcpy(arrInv[indice].descripcion,token);
+            printf("Descripcion: %s\n", token);
+            token = strtok(NULL, delimitador);
+            strcpy(arrInv[indice].cantidad,token);
+            printf("Cantidad: %s\n",token);
+            token = strtok(NULL, delimitador);
+            fflush(stdin);
+            strcpy(arrInv[indice].precio,token);
+            printf("Precio: %s\n",token);
+
+            token = strtok(NULL, delimitador);
+        }
+    }
+}
