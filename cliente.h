@@ -1,6 +1,7 @@
 #ifndef CLIENTE_H_INCLUDED
 #define CLIENTE_H_INCLUDED
 
+#include "heladeria.h"
 #define MAX_TEXTO 30
 
 typedef struct {
@@ -11,7 +12,6 @@ typedef struct {
 } Helados;
 
 typedef struct {
-	int orden;
 	char *nombre;
 	int cantidad;
 	char pedido;
