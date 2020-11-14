@@ -34,17 +34,22 @@ void insertar(Cola *cola, Cliente dato) {
 
 void listar(Cola cola){  
    int i;
-   printf("\n\tCOLA:");
+   printf("\n\t***COLA DE CLIENTES***\n");
    if (!validarVacio(cola)){
    		if(cola.h <= cola.t)
        for (i=cola.h; i<=cola.t ; i++){
+       		printf("\nNUMERO DE ORDEN: [%i]",i);
        		listarCliente(cola.arrCola[i]);
       	}
       	else {
-      		for(i=cola.h; i< cola.max; i++)
+      		for(i=cola.h; i< cola.max; i++){
+      			printf("NUMERO DE ORDEN: [%i]",i);
    				listarCliente(cola.arrCola[i]);
-   			for(i=0; i<=cola.t; i++)
+			}
+   			for(i=0; i<=cola.t; i++){
+   				printf("NUMERO DE ORDEN: [%i]",i);
    				listarCliente(cola.arrCola[i]);
+   			}
    		}
 	}
    else
@@ -72,4 +77,3 @@ void liberaMemoria(Cola *cola){
     free(cola);
     cola = NULL;
 }
-
