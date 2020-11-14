@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>   //Memoria dinamica
 
+#include "heladeria.h"
 #include "cliente.h"
 
 
@@ -18,6 +19,8 @@ Cliente *crearCliente(){
 }
 
 void llenarHelado(Cliente *NuevoCliente){
+	
+	//DEBERIAN SER APUNTADORES AL ARREGLO DE HELADOS
 	printf("Clave: ");
 	scanf("%i", &NuevoCliente->helados->clave);
 	printf("Costo: ");
@@ -32,8 +35,6 @@ void llenarHelado(Cliente *NuevoCliente){
 
 
 void llenarCliente(Cliente *NuevoCliente){
-	printf("Num. de orden:");
-	scanf("%i", &NuevoCliente->orden);
 	printf("\nNombre:");
 	fflush(stdin);
 	gets(NuevoCliente->nombre);
@@ -51,7 +52,7 @@ void llenarCliente(Cliente *NuevoCliente){
 }
 
 void listarCliente(Cliente NuevoCliente){
-		printf("\n%i\t%s\t%i\t%c\t%0.2f\t%i\t%0.2f\t%s\t%s\n",NuevoCliente.orden,
+		printf("\n%s\t%i\t%c\t%0.2f\t%i\t%0.2f\t%s\t%s\n",
 		NuevoCliente.nombre,NuevoCliente.cantidad,NuevoCliente.pedido,NuevoCliente.total,
 		NuevoCliente.helados->clave,
 		NuevoCliente.helados->costo,NuevoCliente.helados->ingPrincipal,
@@ -59,8 +60,9 @@ void listarCliente(Cliente NuevoCliente){
 }
 
 
+
 /*
-void listarHelado(Cliente NuevoCliente){
+void listarCliente(Cliente NuevoCliente){
 	printf("\n%i\t%0.2f\t%s\t%s\n",NuevoCliente.helados->clave,
 		NuevoCliente.helados->costo,NuevoCliente.helados->ingPrincipal,
 		NuevoCliente.helados->sabor);
