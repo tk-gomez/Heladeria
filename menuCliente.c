@@ -20,7 +20,7 @@ int main() {
 	
 
     do {
-        opcion = desplegarMenu("\nCLIENTE:\n1)Ordenar producto \n\nEMPLEADO \n2)Preparar Helado \n3)Entregar Helado \n4)Listar pedidos\n5)Salir\nOpcion: ",5);
+        opcion = desplegarMenu("\nCLIENTE:\n1)Ordenar producto \n\nEMPLEADO \n2)Preparar Helado \n3)Entregar Helado \n4)Listar pedidos\n5)Salir\n\nOpcion: ",5);
         switch (opcion){
 
         case 1:
